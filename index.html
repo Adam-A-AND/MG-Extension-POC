@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      label {
+        color: rgb(0, 0, 0);
+        font-weight: 600;
+      }
+      select {
+        margin-top: 4px;
+        margin-bottom: 16px;
+      }
+    </style>
+    <title>Category Selection</title>
+  </head>
+  <body>
+    <h1>Category Selection</h1>
+    <label>Choose a category<br /></label>
+    <select name="categories" id="categories" onchange="getSubCategories()"
+      ><br /></select
+    ><br />
+    <label>Choose a subcategory<br /></label>
+    <select name="subCategories" id="subs" onchange="getSelectedCategory()"
+      ><br
+    /></select>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
