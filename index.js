@@ -1,3 +1,17 @@
+import { init } from 'dc-extensions-sdk';
+
+let sdk;
+let url;
+
+async function initialize() {
+  sdk = await init();
+
+  url = "https://www.missguided.co.uk/membrane/category/getdata";
+  //sdk.params.url;
+}
+
+initialize();
+
 let categoryData;
 
 let defaultOption = document.createElement("option");
@@ -8,8 +22,6 @@ rootCategoryDropdown.length = 0;
 
 let subCategoryDropdown = document.getElementById("subs");
 subCategoryDropdown.length = 0;
-
-const url = "https://www.missguided.co.uk/membrane/category/getdata";
 
 getResults = async (url) => {
   const proxy = "https://cors-anywhere.herokuapp.com/";
@@ -58,6 +70,7 @@ getSelectedCategory = () => {
   let selectedCategory = categoryData.filter(
     (category) => category.ID === selectedCategoryID
   );
+  await sdk.field.setValue(selectedCategory);
   console.log(selectedCategory);
 };
 
