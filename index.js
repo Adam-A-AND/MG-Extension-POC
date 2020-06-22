@@ -1,15 +1,14 @@
-import { init } from 'dc-extensions-sdk';
+//import { init } from "dc-extensions-sdk";
 
 let sdk;
 let url;
 
-async function initialize() {
-  sdk = await init();
+initialize = async () => {
+  //sdk = await init();
 
   url = "https://www.missguided.co.uk/membrane/category/getdata";
   //sdk.params.url;
-}
-
+};
 initialize();
 
 let categoryData;
@@ -64,14 +63,14 @@ populateDropdown = (categories, dropdown) => {
   }
 };
 
-getSelectedCategory = () => {
+getSelectedCategory = async () => {
   let element = document.getElementById("subs");
   let selectedCategoryID = element.options[element.selectedIndex].value;
   let selectedCategory = categoryData.filter(
     (category) => category.ID === selectedCategoryID
   );
-  await sdk.field.setValue(selectedCategory);
-  console.log(selectedCategory);
+  //await sdk.field.setValue(selectedCategory[0]);
+  console.log(selectedCategory[0]);
 };
 
 getResults(url);
