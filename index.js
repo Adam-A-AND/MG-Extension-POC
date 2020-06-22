@@ -9,11 +9,11 @@ rootCategoryDropdown.length = 0;
 let subCategoryDropdown = document.getElementById("subs");
 subCategoryDropdown.length = 0;
 
-getResults = async () => {
+const url = "https://www.missguided.co.uk/membrane/category/getdata";
+
+getResults = async (url) => {
   const proxy = "https://cors-anywhere.herokuapp.com/";
-  const result = await axios(
-    `${proxy}https://www.missguided.co.uk/membrane/category/getdata`
-  );
+  const result = await axios(`${proxy}${url}`);
   categoryData = result.data.CategoryGetData.Categories;
   const rootCategory = categoryData.filter(
     (category) => category.ParentID === "2"
@@ -61,4 +61,4 @@ getSelectedCategory = () => {
   console.log(selectedCategory);
 };
 
-getResults();
+getResults(url);
