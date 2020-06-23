@@ -1,5 +1,16 @@
 {
   "dependencies": {
-    "axios": "^0.19.2"
+    "axios": "^0.19.2",
+    "dc-extensions-sdk": "^1.1.0",
+    "regenerator-runtime": "^0.13.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.3",
+    "@babel/preset-react": "^7.10.1"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-react"
+    ]
   }
 }

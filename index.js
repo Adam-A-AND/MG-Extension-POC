@@ -1,13 +1,14 @@
-//import { init } from "dc-extensions-sdk";
+import { init } from "dc-extensions-sdk";
+import axios from "axios";
+import "regenerator-runtime/runtime";
 
 let sdk;
 let url;
 
-initialize = async () => {
-  //sdk = await init();
-
-  url = "https://www.missguided.co.uk/membrane/category/getdata";
-  //sdk.params.url;
+const initialize = async () => {
+  sdk = await init();
+  url = sdk.params.instance.url;
+  getResults(url);
 };
 initialize();
 
@@ -22,7 +23,7 @@ rootCategoryDropdown.length = 0;
 let subCategoryDropdown = document.getElementById("subs");
 subCategoryDropdown.length = 0;
 
-getResults = async (url) => {
+const getResults = async (url) => {
   const proxy = "https://cors-anywhere.herokuapp.com/";
   const result = await axios(`${proxy}${url}`);
   categoryData = result.data.CategoryGetData.Categories;
@@ -32,7 +33,7 @@ getResults = async (url) => {
   populateDropdown(rootCategory, rootCategoryDropdown);
 };
 
-getSubCategories = () => {
+window.getSubCategories = () => {
   let element = document.getElementById("categories");
   let selectedCategoryID = element.options[element.selectedIndex].value;
   let subCategories = categoryData.filter(
@@ -41,7 +42,7 @@ getSubCategories = () => {
   populateDropdown(subCategories, subCategoryDropdown);
 };
 
-populateDropdown = (categories, dropdown) => {
+const populateDropdown = (categories, dropdown) => {
   let option;
   let length = dropdown.options.length;
 
@@ -63,14 +64,12 @@ populateDropdown = (categories, dropdown) => {
   }
 };
 
-getSelectedCategory = async () => {
+window.getSelectedCategory = async () => {
   let element = document.getElementById("subs");
   let selectedCategoryID = element.options[element.selectedIndex].value;
   let selectedCategory = categoryData.filter(
     (category) => category.ID === selectedCategoryID
   );
-  //await sdk.field.setValue(selectedCategory[0]);
+  await sdk.field.setValue(selectedCategory[0]);
   console.log(selectedCategory[0]);
 };
-
-getResults(url);
